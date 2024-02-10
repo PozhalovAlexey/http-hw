@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+.addTicketBtn {
+  display: block;
+  padding: 10px 10px;
+  margin-left: auto;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ticketWrapper {
+  border-radius: 8px;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.ticketStatus {
+  border-radius: 8px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.ticketDescription{
+  margin: 1em 5em 2em 2 em;
+}
