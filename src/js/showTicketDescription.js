@@ -2,7 +2,7 @@ export default function showTicketDescription(
   mainContainer,
   currentTicket,
   ticketName,
-  serverUrl
+  serverUrl,
 ) {
   if (mainContainer.querySelector(".modal")) return;
 

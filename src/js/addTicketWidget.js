@@ -1,13 +1,13 @@
 function addTicketCancelButtonHandler(mainContainer) {
   if (!mainContainer) return;
   const widgetAddTicket = mainContainer.querySelector(
-    '[data-widget=addTicket]'
+    "[data-widget=addTicket]",
   );
   const addTicketForm = widgetAddTicket.querySelector(
-    '[data-id=addTicket-form]'
+    "[data-id=addTicket-form]",
   );
   const addTicketCancelButton =
-    widgetAddTicket.querySelector('[data-id=cancel]');
+    widgetAddTicket.querySelector("[data-id=cancel]");
   addTicketCancelButton.addEventListener("click", () => {
     addTicketForm.reset();
     widgetAddTicket.remove();
@@ -17,10 +17,10 @@ function addTicketCancelButtonHandler(mainContainer) {
 function addTicketSubmitHandler(mainContainer, serverUrl) {
   if (!mainContainer) return;
   const widgetAddTicket = mainContainer.querySelector(
-    '[data-widget=addTicket]'
+    "[data-widget=addTicket]",
   );
   const addTicketForm = widgetAddTicket.querySelector(
-    '[data-id=addTicket-form]'
+    "[data-id=addTicket-form]",
   );
 
   addTicketForm.addEventListener("submit", (event) => {

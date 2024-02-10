@@ -2,10 +2,10 @@ function editTicketCancelButtonHandler(mainContainer) {
   if (!mainContainer) return;
 
   const widgetEditTicket = mainContainer.querySelector(
-    "[data-widget=editTicket]"
+    "[data-widget=editTicket]",
   );
   const editTicketForm = widgetEditTicket.querySelector(
-    "[data-id=editTicket-form]"
+    "[data-id=editTicket-form]",
   );
   const editTicketCancelButton =
     widgetEditTicket.querySelector("[data-id=cancel]");
@@ -21,10 +21,10 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
   if (!mainContainer) return;
 
   const widgetEditTicket = mainContainer.querySelector(
-    "[data-widget=editTicket]"
+    "[data-widget=editTicket]",
   );
   const editTicketForm = widgetEditTicket.querySelector(
-    "[data-id=editTicket-form]"
+    "[data-id=editTicket-form]",
   );
   const editTicketNameInput = widgetEditTicket.querySelector("[data-id=name]");
   const editingTicketID = ticketEdit.closest(".ticket-wrapper").dataset.id;
@@ -83,7 +83,7 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
 function createRequestTicketDescription(
   mainContainer,
   currentTicket,
-  serverUrl
+  serverUrl,
 ) {
   //  ********************************************************
   // если описание ранее не было подгружено нажатием на тикет,
@@ -94,10 +94,10 @@ function createRequestTicketDescription(
   //  ********************************************************
   if (!mainContainer) return;
   const widgetEditTicket = mainContainer.querySelector(
-    "[data-widget=editTicket]"
+    "[data-widget=editTicket]",
   );
   const editTicketDescriptionInput = widgetEditTicket.querySelector(
-    "[data-id=description]"
+    "[data-id=description]",
   );
   const requestGetTicketDescriptionUrl = `${serverUrl}/?method=ticketById&id=${currentTicket.dataset.id}`;
   const xhrGetDescription = new XMLHttpRequest();
@@ -125,9 +125,8 @@ export default function getEditTicketWidget(
   mainContainer,
   currentTicket,
   ticketEdit,
-  serverUrl
+  serverUrl,
 ) {
-
   if (mainContainer.querySelector(".modal")) return;
 
   const widgetEditTicketHtml = `

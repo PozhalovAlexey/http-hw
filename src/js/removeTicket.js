@@ -2,10 +2,10 @@ function removeTicketCancelButtonHandler(mainContainer) {
   if (!mainContainer) return;
 
   const widgetRemoveTicket = mainContainer.querySelector(
-    '[data-widget=removeTicket]'
+    "[data-widget=removeTicket]",
   );
   const removeTicketCancelButton =
-    widgetRemoveTicket.querySelector('[data-id=cancel]');
+    widgetRemoveTicket.querySelector("[data-id=cancel]");
 
   removeTicketCancelButton.addEventListener("click", () => {
     widgetRemoveTicket.remove();
@@ -16,9 +16,9 @@ function removeTicketOkButtonHandler(mainContainer, currentTicket, serverUrl) {
   if (!mainContainer) return;
 
   const widgetRemoveTicket = mainContainer.querySelector(
-    '[data-widget=removeTicket]'
+    "[data-widget=removeTicket]",
   );
-  const removeTicketOkButton = widgetRemoveTicket.querySelector('[data-id=ok]');
+  const removeTicketOkButton = widgetRemoveTicket.querySelector("[data-id=ok]");
 
   removeTicketOkButton.addEventListener("click", () => {
     const formData = new FormData();
@@ -47,10 +47,9 @@ function removeTicketOkButtonHandler(mainContainer, currentTicket, serverUrl) {
 export default function getRemoveTicketWidget(
   mainContainer,
   currentTicket,
-  serverUrl
+  serverUrl,
 ) {
-
-  if (mainContainer.querySelector('.modal')) return;
+  if (mainContainer.querySelector(".modal")) return;
   const widgetRemoveTicketHtml = `
     <div data-widget="removeTicket" class="modal widget-remove">
       <h2>Удалить тикет?</h2>  

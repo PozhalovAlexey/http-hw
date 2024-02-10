@@ -3,7 +3,7 @@ export default function changeTicketStatus(
   currentTicket,
   ticketStatus,
   ticketStatusCheckbox,
-  serverUrl
+  serverUrl,
 ) {
   if (mainContainer.querySelector(".modal")) return;
 
@@ -26,6 +26,7 @@ export default function changeTicketStatus(
       xhrChangeTicketStatus.status < 300
     ) {
       try {
+        console.log(xhrChangeTicketStatus.response);
       } catch (e) {
         console.error(e);
       }
