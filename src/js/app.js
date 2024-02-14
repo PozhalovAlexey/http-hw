@@ -5,36 +5,38 @@ import getRemoveTicketWidget from "./removeTicket";
 import getEditTicketWidget from "./editTicket";
 import getAddTicketWidget from "./addTicketWidget";
 
-const serverUrl = "https://ahj-hw-http.herokuapp.com/";
-
+const serverUrl = 'http://localhost:8080/';
 const mainContainer = document.querySelector(".container");
 const ticketsContainer = document.querySelector(".ticketsContainer");
-const addTicketButton = document.querySelector(".addTicketBtn");
+const addTicketButton = document.querySelector(".add-ticket-button");
 
 document.addEventListener("DOMContentLoaded", () => {
   const xhrLoadTicket = new XMLHttpRequest();
   xhrLoadTicket.open("GET", `${serverUrl}/?method=allTickets`);
   xhrLoadTicket.responseType = "json";
+
   xhrLoadTicket.addEventListener("load", () => {
     if (xhrLoadTicket.status >= 200 && xhrLoadTicket.status < 300) {
       try {
         const responsedTickets = xhrLoadTicket.responseText;
-        if (!responsedTickets.length)
+
+        if (!responsedTickets.length) {
           responsedTickets.forEach((ticket) => {
             getTicket(ticket, ticketsContainer);
 
             const currentTicket = ticketsContainer.lastElementChild;
             const ticketStatus = currentTicket.querySelector(".ticketStatus");
             const ticketStatusCheckbox = currentTicket.querySelector(
-              ".ticketStatusCheckbox",
+              ".ticketStatusCheckbox"
             );
+
             if (ticketStatus.dataset.status === "true") {
               ticketStatusCheckbox.classList.remove("hidden");
+
               const ticketName = currentTicket.querySelector(".ticketName");
-              const ticketEdit =
-                currentTicket.querySelector(".ticketEditButton");
+              const ticketEdit = currentTicket.querySelector(".ticketEditButton");
               const ticketRemove = currentTicket.querySelector(
-                ".ticketRemoveButton",
+                ".ticketRemoveButton"
               );
 
               ticketStatus.addEventListener("click", () => {
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   mainContainer,
                   currentTicket,
                   ticketStatus,
-                  ticketStatusCheckbox,
+                  ticketStatusCheckbox
                 );
               });
 
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   mainContainer,
                   currentTicket,
                   ticketName,
-                  serverUrl,
+                  serverUrl
                 );
               });
 
@@ -60,22 +62,31 @@ document.addEventListener("DOMContentLoaded", () => {
                   mainContainer,
                   currentTicket,
                   ticketEdit,
-                  serverUrl,
+                  serverUrl
                 );
               });
 
               ticketRemove.addEventListener("click", () => {
-                getRemoveTicketWidget(mainContainer, currentTicket, serverUrl);
+                getRemoveTicketWidget(
+                  mainContainer,
+                  currentTicket,
+                  serverUrl
+                );
               });
             }
           });
+        }
       } catch (e) {
         console.error(e);
       }
     }
-    xhrLoadTicket.send();
-    addTicketButton.addEventListener("click", () => {
-      getAddTicketWidget(mainContainer, serverUrl);
-    });
+  });
+
+  xhrLoadTicket.send();
+  console.log('clik')
+
+
+  addTicketButton.addEventListener("click", () => {
+    getAddTicketWidget(mainContainer, serverUrl);
   });
 });
