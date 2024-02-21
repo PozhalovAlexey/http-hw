@@ -5,7 +5,7 @@ import getRemoveTicketWidget from "./removeTicket";
 import getEditTicketWidget from "./editTicket";
 import getAddTicketWidget from "./addTicketWidget";
 
-const serverUrl = 'http://localhost:7070/';
+const serverUrl = 'https://serverfor-http-hw.onrender.com';
 const mainContainer = document.querySelector(".container");
 const ticketsContainer = document.querySelector(".ticketsContainer");
 const addTicketButton = document.querySelector(".add-ticket-button");
