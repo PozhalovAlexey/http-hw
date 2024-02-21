@@ -5,7 +5,7 @@ import getRemoveTicketWidget from "./removeTicket";
 import getEditTicketWidget from "./editTicket";
 import getAddTicketWidget from "./addTicketWidget";
 
-const serverUrl = 'http://localhost:8080/';
+const serverUrl = 'http://localhost:7070/';
 const mainContainer = document.querySelector(".container");
 const ticketsContainer = document.querySelector(".ticketsContainer");
 const addTicketButton = document.querySelector(".add-ticket-button");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   xhrLoadTicket.addEventListener("load", () => {
     if (xhrLoadTicket.status >= 200 && xhrLoadTicket.status < 300) {
       try {
-        const responsedTickets = xhrLoadTicket.responseText;
+        const responsedTickets = xhrLoadTicket.response;
 
         if (!responsedTickets.length) {
           responsedTickets.forEach((ticket) => {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   xhrLoadTicket.send();
-  console.log('clik')
+  console.log('click')
 
 
   addTicketButton.addEventListener("click", () => {

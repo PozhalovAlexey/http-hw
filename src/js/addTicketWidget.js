@@ -49,7 +49,8 @@ function addTicketSubmitHandler(mainContainer, serverUrl) {
         }
       }
     });
-    xhrAddTicket.send(formData);
+    let data = JSON.stringify(formData)
+    xhrAddTicket.send(data);
     addTicketForm.reset();
     widgetAddTicket.remove();
   });
