@@ -11,7 +11,6 @@ function editTicketCancelButtonHandler(mainContainer) {
     widgetEditTicket.querySelector("[data-id=cancel]");
 
   editTicketCancelButton.addEventListener("click", () => {
-    // console.log('form_click_cancel_button');
     editTicketForm.reset();
     widgetEditTicket.remove();
   });
@@ -38,7 +37,6 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
 
   editTicketForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    // console.log('form_submit');
     const inputName = editTicketForm.name.value.trim();
     const inputDescription = editTicketForm.description.value.trim();
     if (inputName === "") return;
@@ -49,7 +47,6 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
     formData.append("description", inputDescription);
     formData.append("status", editingTicketStatus);
     formData.append("created", new Date().toLocaleString());
-    // console.log('EditTicket_formData: ', Array.from(formData.entries()));
 
     const requestEditTicketUrl = `${serverUrl}/?method=editTicket`;
     const xhrEditTicket = new XMLHttpRequest();
@@ -60,7 +57,6 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
     xhrEditTicket.addEventListener("load", () => {
       if (xhrEditTicket.status >= 200 && xhrEditTicket.status < 300) {
         try {
-          // console.log('ticket edited');
           setTimeout(() => {
             document.body.style.cursor = "";
             widgetEditTicket.style.cursor = "";
@@ -68,7 +64,6 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
           }, 1000);
         } catch (e) {
           console.error(e);
-          // throw e;
         }
       }
     });
@@ -77,7 +72,7 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
     widgetEditTicket.remove();
 
     xhrEditTicket.send(formData);
-  }); // SUBMIT endline
+  });
 }
 
 function createRequestTicketDescription(
@@ -85,13 +80,6 @@ function createRequestTicketDescription(
   currentTicket,
   serverUrl,
 ) {
-  //  ********************************************************
-  // если описание ранее не было подгружено нажатием на тикет,
-  // то его не буддет в editingTicketDescription
-  // здесь делаем запрос на сервер,
-  // чтобы подгрузить описание для редактирования,
-  //  иначе отправка пустого описания затрет описание тикета, хранящееся на сервере
-  //  ********************************************************
   if (!mainContainer) return;
   const widgetEditTicket = mainContainer.querySelector(
     "[data-widget=editTicket]",
@@ -106,14 +94,11 @@ function createRequestTicketDescription(
   xhrGetDescription.addEventListener("load", () => {
     if (xhrGetDescription.status >= 200 && xhrGetDescription.status < 300) {
       try {
-        // console.log('description recieved');
         const responsedDescription = xhrGetDescription.response;
-        // console.log('xhrGetDescription.response: ', responsedDescription);
         if (!responsedDescription) return;
         editTicketDescriptionInput.value = responsedDescription;
       } catch (e) {
         console.error(e);
-        // throw e;
       }
     }
   });

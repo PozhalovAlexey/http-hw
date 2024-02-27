@@ -146,6 +146,6 @@ button[data-id=cancel] {
   margin-right: 1rem;
 }
 
-.hidden {
+.visible {
   display: none;
 }

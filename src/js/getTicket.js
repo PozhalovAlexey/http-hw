@@ -16,7 +16,7 @@ export default function getTicket(ticket, ticketsContainer) {
       <span>&#10006;</span>
     </div>
   </div>
-  <div class="ticket-description hidden"><p></p></div>
+  <div class="ticket-description visible"><p></p></div>
 </div>
  `;
 

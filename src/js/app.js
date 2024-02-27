@@ -7,7 +7,7 @@ import getAddTicketWidget from "./addTicketWidget";
 
 const serverUrl = 'https://serverfor-http-hw.onrender.com';
 const mainContainer = document.querySelector(".container");
-const ticketsContainer = document.querySelector(".ticketsContainer");
+
 const addTicketButton = document.querySelector(".add-ticket-button");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,16 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
   xhrLoadTicket.addEventListener("load", () => {
     if (xhrLoadTicket.status >= 200 && xhrLoadTicket.status < 300) {
       try {
-        const responsedTickets = xhrLoadTicket.response;
+        let responsedTickets = [];
+        const ticketsContainer = document.querySelector(".tickets-container");
 
         if (!responsedTickets.length) {
+          responsedTickets = xhrLoadTicket.response
+          console.log(responsedTickets)
+          console.log(ticketsContainer)
           responsedTickets.forEach((ticket) => {
             getTicket(ticket, ticketsContainer);
-
             const currentTicket = ticketsContainer.lastElementChild;
-            const ticketStatus = currentTicket.querySelector(".ticketStatus");
+            const ticketStatus = currentTicket.querySelector(".ticket-status");
             const ticketStatusCheckbox = currentTicket.querySelector(
-              ".ticketStatusCheckbox"
+              ".ticket-status-checkbox"
             );
 
             if (ticketStatus.dataset.status === "true") {
