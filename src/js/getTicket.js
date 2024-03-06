@@ -3,7 +3,7 @@ export default function getTicket(ticket, ticketsContainer) {
 <div data-id="${ticket.id}" class="ticket-wrapper">
   <div class="ticket-body">
     <button data-status="${ticket.status}" class="ticket-status">
-    <span class="ticket-status-checkbox hidden">&#10004;</span>
+    <span class="ticket-status-checkbox ${!ticket.status ? "hidden" :"" }">&#10004;</span>
     </button>
     <div class="ticket-name"><p>${ticket.name}</p></div>
     <div class="ticket-timestamp">

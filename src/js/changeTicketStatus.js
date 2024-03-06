@@ -8,16 +8,8 @@ export default function changeTicketStatus(
   if (mainContainer.querySelector(".modal")) return;
 
   ticketStatusCheckbox.classList.toggle("hidden");
-  let { status } = ticketStatus.dataset;
-  const isHidden = ticketStatusCheckbox.classList.contains("hidden");
-  if (isHidden) status = false;
-  if (!isHidden) status = true;
 
-  const formData = new FormData();
-  formData.append("id", currentTicket.dataset.id);
-  formData.append("status", status);
-
-  const requestChangeTicketStatusUrl = `${serverUrl}/?method=changeTicketStatus`;
+  const requestChangeTicketStatusUrl = `${serverUrl}/?method=changeTicketStatus&id=${currentTicket.dataset.id}`;
   const xhrChangeTicketStatus = new XMLHttpRequest();
   xhrChangeTicketStatus.open("POST", requestChangeTicketStatusUrl);
   xhrChangeTicketStatus.addEventListener("load", () => {
@@ -33,5 +25,5 @@ export default function changeTicketStatus(
     }
   });
 
-  xhrChangeTicketStatus.send(formData);
+  xhrChangeTicketStatus.send();
 }
