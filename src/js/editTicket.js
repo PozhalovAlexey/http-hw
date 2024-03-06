@@ -41,14 +41,14 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
     const inputDescription = editTicketForm.description.value.trim();
     if (inputName === "") return;
 
-    const formData = new FormData();
-    formData.append("id", editingTicketID);
-    formData.append("name", inputName);
-    formData.append("description", inputDescription);
-    formData.append("status", editingTicketStatus);
-    formData.append("created", new Date().toLocaleString());
+    console.log(editingTicketID,'editing tickett id')
+    const body = {
 
-    const requestEditTicketUrl = `${serverUrl}/?method=editTicket`;
+      name:inputName,
+      description:inputDescription,
+      status:editingTicketStatus,
+    }
+    const requestEditTicketUrl = `${serverUrl}/?method=updateById&id=${editingTicketID}`;
     const xhrEditTicket = new XMLHttpRequest();
     xhrEditTicket.open("POST", requestEditTicketUrl);
     document.body.style.cursor = "wait";
@@ -71,7 +71,7 @@ function editTicketSubmitHandler(mainContainer, ticketEdit, serverUrl) {
     editTicketForm.reset();
     widgetEditTicket.remove();
 
-    xhrEditTicket.send(formData);
+    xhrEditTicket.send(JSON.stringify(body));
   });
 }
 

@@ -29,12 +29,15 @@ function addTicketSubmitHandler(mainContainer, serverUrl) {
     const inputDescription = addTicketForm.description.value.trim();
     if (inputName === "") return;
 
-    const formData = new FormData();
-    formData.append("id", null);
-    formData.append("name", inputName);
-    formData.append("description", inputDescription);
-    formData.append("status", false);
-    formData.append("created", new Date().toLocaleString());
+    const body ={
+      id:null,
+      name:inputName,
+      description:inputDescription,
+      status:false,
+      created:new Date().toLocaleString()
+    }
+
+
     const requestCreateTicketUrl = `${serverUrl}/?method=createTicket`;
     const xhrAddTicket = new XMLHttpRequest();
     xhrAddTicket.open("POST", requestCreateTicketUrl);
@@ -49,8 +52,7 @@ function addTicketSubmitHandler(mainContainer, serverUrl) {
         }
       }
     });
-    let data = JSON.stringify(formData)
-    xhrAddTicket.send(data);
+    xhrAddTicket.send(JSON.stringify(body));
     addTicketForm.reset();
     widgetAddTicket.remove();
   });
